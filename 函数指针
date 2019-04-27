@@ -1,0 +1,81 @@
+//函数与指针
+//函数在编译时就被分配一给个入口地址，即函数的指针
+//将函数的指针赋值给一个指针变量，用一个指针变量就可以指向一个函数
+
+#include <iostream>
+using namespace std;
+int main()
+{
+	int max(int x,int y); //函数声明
+	int a,b,m;
+	cin >> a >> b;
+	m = max(a,b);
+	cout << "max =" << m << endl;
+	return 0;
+}
+
+int max(int x,int y)
+{
+	return x>y?x:y;
+}
+
+//改为用函数指针
+#include <iostream>
+using namespace std;
+int main()
+{
+	int max(int x,int y);
+	int (*p)(int,int);
+	p = max;
+
+	int a,b,m;
+	cin >> a >> b;
+	m = p(a,b);
+	cout << "max=" << m;
+	return 0;
+}
+int max(int x,int y)
+{
+	return x>y?x:y;
+}
+
+//用指向函数的指针做函数参数
+#include <iostream>
+using namespace std;
+int main()
+{
+	void fun(int x,int y,int (*p)(int,int));
+	int max(int x,int y);
+	int min(int x,int y);
+	int sum(int x,int y);
+	int a,b,m;
+	cout << "input 2 numbers:" ;
+	cin >> a >> b;
+
+	cout << "1:最大值 2:最小值 3:求和";
+	cin >> m;
+	if(m==1) fun(a,b,max);
+	if(m==2) fun(a,b,min);
+	if(m==3) fun(a,b,sum);
+	return 0;
+
+}
+void fun(int x,int y,int (*p)(int,int))
+{
+	int result;
+	result = (*p)(x,y);
+	cout << result;
+}
+int max(int x,int y)
+{
+	return (x>y)?x:y;
+}
+int min(int x,int y)
+{
+	return (x<y)?x:y;
+}
+int sum(int x,int y)
+{
+	return x+y;
+}
+
