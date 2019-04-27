@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	float score[3][4]={{60,79,80,90}{56,67,78,90}{56,78,97,98}};
+	float *score(float (*pointer)[4],int n);
+	float *p;int i,k;
+
+	cin >> k;
+	cout << "The score of No." << k << "are:" << endl;
+	p = search(score,k);
+
+	for(i=0;i<4;i++)
+	{
+		cout << *(p+i)<< " ";
+	}
+	cout << endl;
+	return 0;
+}
+
+float *search(float (*pointer)[4],int n)
+{
+	float *pt;
+	pt = *(pointer+n);
+	return (pt);
+}
+
+//指针数组的应用
